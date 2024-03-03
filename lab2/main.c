@@ -273,6 +273,25 @@ int main(){
 	iterations = 0;
 	printf("\n");
 
+	//Запись данных для графиков в файл
+	FILE *file = fopen("data.txt", "w");
+	
+	for(uint8_t i = 0; i < 3; i++){
+		for(uint8_t j = 0; j < 3; j++){
+			fprintf(file, "%u ", method_iterations[i][j]);
+		}
+	}
+
+	fprintf(file, "\n");
+
+	for(uint8_t i = 0; i < 3; i++){
+		for(uint8_t j = 0; j < 3; j++){
+			fprintf(file, "%f ", difference_norms[i][j]);
+		}
+	}
+
+	fclose(file);
+
 	//Освобождение памяти
 	free_matrix(matr);
 	free_vector(b);
