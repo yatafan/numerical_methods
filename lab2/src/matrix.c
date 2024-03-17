@@ -188,7 +188,7 @@ float matrix_norm2(Matrix *m){
 		if(sum > norm){ norm = sum; }
 		sum = 0;
 	}
-
+	
 	return norm;
 }
 
@@ -203,7 +203,7 @@ float matrix_norm3(Matrix *m){
 		if(sum > norm){ norm = sum; }
 		sum = 0;
 	}
-
+	
 	return norm;
 }
 

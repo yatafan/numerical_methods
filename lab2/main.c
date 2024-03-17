@@ -2,8 +2,8 @@
 
 #define N 4 //Размерность матрицы
 
-#define EIGEN1 836.949 //Наибольшее собственное значение матрицы для нормы первого типа
-#define EIGEN2 0.055 //Наибольшее собственное значение обратной матрицы для нормы первого типа
+#define EIGEN1 /*825.05843*/ 836.949 //Наибольшее собственное значение матрицы для нормы первого типа
+#define EIGEN2 /*0.21669*/ 0.055 //Наибольшее собственное значение обратной матрицы для нормы первого типа
 
 #define T 0.0725 //Тау
 
@@ -17,6 +17,11 @@ int main(){
 								{1.0, 2.0, 6.0, 2.0},
 								{1.0, 10.0, 11.0, 22.0}};
 
+/*	float static_matrix[N][N] = {{12.0, 7.0, 4.0, 1.0},
+								{5.0, 20.0, 8.0, 7.0},
+								{1.0, 4.0, 14.0, 8.0},
+								{0.0, 1.0, 4.0, 5.0}};
+*/
 	Matrix *matr = new_matrix(N);
 
 	for(uint8_t i = 0; i < matr->size; i++){
@@ -40,21 +45,37 @@ int main(){
 	b->data[1] = 5.0;
 	b->data[2] = 10.0;
 	b->data[3] = 0.0;
-
+/* 	
+	b->data[0] = 18.0;
+	b->data[1] = 36.0;
+	b->data[2] = 26.0;
+	b->data[3] = 12.0;
+*/
 	Vector *x0 = new_vector(N);
 
 	x0->data[0] = 1.0;
 	x0->data[1] = 2.0;
 	x0->data[2] = 3.0;
 	x0->data[3] = 4.0;
-
+ 	
+/*
+	x0->data[0] = 1.0;
+	x0->data[1] = 1.0;
+	x0->data[2] = 1.0;
+	x0->data[3] = 1.0;
+*/
 	Vector *exact_solution = new_vector(N); //Точное решение системы
-	
+
 	exact_solution->data[0] = -5.0 / 286.0;
 	exact_solution->data[1] = 265.0 / 572.0;
 	exact_solution->data[2] = 272.0 / 143.0;
 	exact_solution->data[3] = -166.0 / 143.0;
-
+/*
+	exact_solution->data[0] = 111.0 / 155.0;
+	exact_solution->data[1] = 119.0 / 155.0;
+	exact_solution->data[2] = 173.0 / 310.0;
+	exact_solution->data[3] = 9.0 / 5.0;
+*/	
 	printf("исходная матрица:\n");
 	print_matrix(matr);
 	printf("\n");
@@ -70,7 +91,7 @@ int main(){
 	//-----= Метод простых итераций =------	
 	printf("-=Метод простых итераций=-\n\n");
 
-	float norm = matrix_norm1(0.935);
+	float norm = matrix_norm1(0.96776); //matrix_norm1(0.935);
 	
 	printf("Сходимость: ");
 	if(norm < 1){
